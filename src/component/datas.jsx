@@ -1,17 +1,17 @@
-export let Employees = [
+export let Cricketers = [
   {
     id: 1,
-    name: "John",
-    age: 25,
+    name: "Dhoni",
+    run: 235,
   },
   {
     id: 2,
-    name: "Jane",
-    age: 30,
+    name: "Virat Kholi",
+    run: 300,
   },
   {
     id: 3,
-    name: "Bob",
-    age: 22,
+    name: "Sachein",
+    run: 100,
   },
 ];

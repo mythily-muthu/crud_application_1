@@ -1,19 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { Button, Table } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Employees } from "./datas";
+import { Cricketers } from "./datas";
+import { Link } from "react-router-dom";
 
 const Home = () => {
-  const [employees, setEmployees] = useState(Employees);
+  const [cricketers, setCricketers] = useState(Cricketers);
 
   const handleDelete = (id) => {
-    const updatedEmployeeList = employees.filter((item) => item.id !== id);
-    setEmployees(updatedEmployeeList);
+    const updatedCricketerList = cricketers.filter((item) => item.id !== id);
+    console.log(updatedCricketerList);
+    setCricketers(updatedCricketerList);
   };
+  const handleEdit = (second) => {};
+  console.log(cricketers);
 
   return (
-    <div>
-      <div className="m-10">
+    <div className="py-10">
+      <h1>Find your fav cricketer scores here..</h1>
+      <div className="m-16">
         <Table className="striped bodered hover:text-red-200">
           <thead>
             <tr>
@@ -23,33 +28,41 @@ const Home = () => {
             </tr>
           </thead>
           <tbody>
-            {Employees && Employees.length > 0
-              ? Employees.map((item) => {
-                  return (
-                    <tr key={item.id}>
-                      <td>{item.name}</td>
-                      <td>{item.age}</td>
-                      <td>
+            {cricketers && cricketers.length > 0 ? (
+              cricketers.map((item) => {
+                return (
+                  <tr key={item.id}>
+                    <td>{item.name}</td>
+                    <td>{item.run}</td>
+                    <td>
+                      <Link to={"/edit"}>
                         <Button
-                          className=""
-                          //   onClick={() => handleEdit(item.id)}
+                          className="py-1 cursor-pointer"
+                          onClick={() => handleEdit(item.id)}
                         >
                           Edit
                         </Button>
-                        &nbsp;
-                        <Button
-                          className=""
-                          onClick={() => handleDelete(item.id)}
-                        >
-                          Delete
-                        </Button>
-                      </td>
-                    </tr>
-                  );
-                })
-              : "no datas available"}
+                      </Link>
+                      &nbsp;
+                      <Button
+                        className="btn-danger m-1 py-1 cursor-pointer"
+                        onClick={() => handleDelete(item.id)}
+                      >
+                        Delete
+                      </Button>
+                    </td>
+                  </tr>
+                );
+              })
+            ) : (
+              <p>"no datas available"</p>
+            )}
           </tbody>
         </Table>
+        <br></br>
+        <Link to={"/add"}>
+          <Button className="w-full btn-success py-2">Add </Button>
+        </Link>
       </div>
     </div>
   );
