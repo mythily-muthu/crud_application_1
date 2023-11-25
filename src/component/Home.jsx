@@ -4,8 +4,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Cricketers } from "./datas";
 import { Link } from "react-router-dom";
 
-const Home = () => {
-  const [cricketers, setCricketers] = useState(Cricketers);
+const Home = ({ cricketers, setCricketers }) => {
+  // const [cricketers, setCricketers] = useState(Cricketers);
 
   const handleDelete = (id) => {
     const updatedCricketerList = cricketers.filter((item) => item.id !== id);
@@ -61,7 +61,7 @@ const Home = () => {
         </Table>
         <br></br>
         <Link to={"/add"}>
-          <Button className="w-full btn-success py-2">Add </Button>
+          <Button className="w-full btn-success py-2">Add</Button>
         </Link>
       </div>
     </div>

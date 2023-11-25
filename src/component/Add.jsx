@@ -1,19 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { Button, form } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Cricketers } from "./datas";
+// import { Cricketers } from "./datas";
 import { Link } from "react-router-dom";
 
-const Add = () => {
+const Add = ({ handleCreate }) => {
   const [name, setName] = useState("");
   const [run, setRun] = useState("");
 
-  const handleCreate = () => {
+  // a new obj is created with name and runs
+  const handleCreateClick = () => {
     let newCricketer = {
       id: new Date().getTime(),
       name: name,
       run: run,
     };
+    // the new obj is been added to the crickter list
+    handleCreate(newCricketer);
+    // empty the input fields
+    setName("");
+    setRun("");
   };
 
   return (
@@ -46,7 +52,7 @@ const Add = () => {
           <Button
             className="py-2 cursor-pointer w-full "
             type="submit"
-            onClick={handleCreate}
+            onClick={handleCreateClick}
           >
             Create
           </Button>
