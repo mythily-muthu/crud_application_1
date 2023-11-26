@@ -12,8 +12,21 @@ function App() {
   const handleCreate = (newCricketer) => {
     setCricketers([...cricketers, newCricketer]);
   };
+
+  const handleEdit = (editedCricketer) => {
+    const updatedCricketers = cricketers.map((cricketer) =>
+      cricketer.id === editedCricketer.id ? editedCricketer : cricketer
+    );
+    setCricketers(updatedCricketers);
+  };
+
   return (
-    <div className="App">
+    <div
+      className="bg-cover bg-center h-screen"
+      style={{
+        backgroundImage: 'url("https://wallpapercave.com/wp/wp3049856.jpg")',
+      }}
+    >
       <Router>
         <Routes>
           <Route
@@ -22,13 +35,11 @@ function App() {
               <Home cricketers={cricketers} setCricketers={setCricketers} />
             }
           />
+          <Route path="/add" element={<Add handleCreate={handleCreate} />} />
           <Route
-            path="/add"
-            element={
-              <Add cricketers={cricketers} handleCreate={handleCreate} />
-            }
+            path="/edit/:id"
+            element={<Edit cricketers={cricketers} handleEdit={handleEdit} />}
           />
-          <Route path="/edit" element={<Edit />} />
         </Routes>
       </Router>
     </div>

@@ -12,16 +12,17 @@ const Home = ({ cricketers, setCricketers }) => {
     console.log(updatedCricketerList);
     setCricketers(updatedCricketerList);
   };
-  const handleEdit = (second) => {};
-  console.log(cricketers);
 
   return (
-    <div className="py-10">
-      <h1>Find your fav cricketer scores here..</h1>
+    <div className="py-20">
+      <h1 className="flex justify-center text-white">
+        Find your fav cricketer scores here..
+      </h1>
       <div className="m-16">
-        <Table className="striped bodered hover:text-red-200">
-          <thead>
-            <tr>
+        <Table className="striped bodered hover:text-red-200 ">
+          <thead className="p-1">
+            <tr className="p-10 text-xl">
+              <th>Id</th>
               <th>Name</th>
               <th>Age</th>
               <th>Actions</th>
@@ -32,16 +33,12 @@ const Home = ({ cricketers, setCricketers }) => {
               cricketers.map((item) => {
                 return (
                   <tr key={item.id}>
+                    <td>{item.id}</td>
                     <td>{item.name}</td>
                     <td>{item.run}</td>
                     <td>
-                      <Link to={"/edit"}>
-                        <Button
-                          className="py-1 cursor-pointer"
-                          onClick={() => handleEdit(item.id)}
-                        >
-                          Edit
-                        </Button>
+                      <Link to={`/edit/${item.id}`}>
+                        <Button className="py-1 cursor-pointer">Edit</Button>
                       </Link>
                       &nbsp;
                       <Button
@@ -61,7 +58,7 @@ const Home = ({ cricketers, setCricketers }) => {
         </Table>
         <br></br>
         <Link to={"/add"}>
-          <Button className="w-full btn-success py-2">Add</Button>
+          <Button className="w-full btn-success py-2 font-bold">ADD</Button>
         </Link>
       </div>
     </div>
